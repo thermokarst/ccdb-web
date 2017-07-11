@@ -1,0 +1,8 @@
+<div class="container">
+  <form {{action 'authenticate' on='submit'}} id="loginForm" class="form-signin">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    {{input id="username" type="text" placeholder='Username' class="form-control" value=identification}}
+    {{input id="password" type="password" placeholder='Password' class="form-control" value=password}}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+  </form>
+</div>
