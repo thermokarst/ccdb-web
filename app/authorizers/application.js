@@ -1,11 +1,11 @@
 import Ember from 'ember';
 import BaseAuthorizer from 'ember-simple-auth/authorizers/base';
 
-const { isEmpty } = Ember;
+const { isEmpty, get } = Ember;
 
 export default BaseAuthorizer.extend({
   authorize(data, block) {
-    const accessToken = data['token'];
+    const accessToken = get(data, 'data.token');
     if (!isEmpty(accessToken)) {
       block('Authorization', `Token ${accessToken}`);
     }

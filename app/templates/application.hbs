@@ -1,1 +1,21 @@
+{{#if session.isAuthenticated}}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="#">Overview</a></li>
+        <li><a href="#">Experiments</a></li>
+        <li><a href="#">Collections</a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li>{{#link-to 'logout'}}Logout{{/link-to}}</li>
+      </ul>
+    </div>
+    <div class="col-md-10 content">
+      {{outlet}}
+    </div>
+  </div>
+</div>
+{{else}}
 {{outlet}}
+{{/if}}

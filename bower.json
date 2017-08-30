@@ -1,5 +1,9 @@
 {
   "name": "ccdb-web",
   "dependencies": {
+    "bootstrap": "^3.3.7"
+  },
+  "devDependencies": {
+    "bootstrap": "^3.3.7"
   }
 }
