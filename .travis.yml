@@ -18,6 +18,8 @@ install:
   - bower install
 script:
   - npm test
+after_success:
+  - ember build -prod
 deploy:
   provider: firebase
   token:
