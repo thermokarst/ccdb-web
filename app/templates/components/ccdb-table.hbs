@@ -1,0 +1,10 @@
+{{#if hasBlock}}
+  {{yield (hash
+    table=(component 'light-table' table=table)
+  )}}
+{{else}}
+  {{#light-table table tableClassNames="table table-striped" as |t|}}
+    {{t.head}}
+    {{t.body}}
+  {{/light-table}}
+{{/if}}
