@@ -10,7 +10,7 @@ moduleFor('authenticator:application', 'Unit | application', {
 test('should restore session when token is present', function(assert) {
   assert.expect(1);
   const authenticator = this.subject();
-  const data = {data: {token: 'foo'}};
+  const data = {data: {attributes: {'auth-token': 'foo'}}};
   return authenticator.restore(data).then((obs) => {
     assert.equal(obs, data);
   });

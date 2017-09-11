@@ -6,7 +6,7 @@ const { RSVP: { Promise }, $, get, isEmpty, run } = Ember;
 
 export default BaseAuthenticator.extend({
   serverTokenEndpoint: `${config.APP.API_HOST}/api/auth/login/`,
-  tokenAttributeName: 'data.token',
+  tokenAttributeName: 'data.attributes.auth-token',
   identificationAttributeName: 'username',
   verificationAttributeName: 'password',
 
