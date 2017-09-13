@@ -1,10 +1,73 @@
-<div class='col-md-12'>
+<div class="well well-sm">
   <div class="row">
+
     <div class="col-md-3">
-      <select>
+      <label>Project</label>
+      <select class="form-control">
         <option selected=selected>Perchlorate</option>
-        <option>Saint Lawrence Island</option>
+        <option>Ship Creek</option>
+        <option>St. Lawrence Island</option>
       </select>
+    </div>
+
+    <div class="col-md-3">
+      <label>Study Location</label>
+      <select class="form-control">
+        <option selected=selected>TL5</option>
+        <option>SQ12</option>
+        <option>CPISBV</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label>Method</label>
+      <select class="form-control">
+        <option selected=selected>Fyke Net</option>
+        <option>Seine</option>
+        <option>Minnow Trap</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label>Type</label>
+      <select class="form-control">
+        <option selected=selected>Adults</option>
+        <option>Embryos</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="row top-buffer">
+
+    <div class="col-md-4">
+      <label># of Traps</label>
+      <input type="text" class="form-control" placeholder="3">
+    </div>
+
+    <div class="col-md-4">
+      <label>Start</label>
+      <input type="datetime" class="form-control">
+    </div>
+
+    <div class="col-md-4">
+      <label>End</label>
+      <input type="datetime" class="form-control">
+    </div>
+
+  </div>
+
+  <div class="row top-buffer">
+    <div class="col-md-12">
+      <div class="btn-group" role="group">
+        <button type="submit" class="btn btn-default">
+          Search
+        </button>
+        <button type="button" class="btn btn-default">
+          Reset
+        </button>
+
+      </div>
     </div>
   </div>
 </div>
