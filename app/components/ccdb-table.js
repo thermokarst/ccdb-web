@@ -8,6 +8,8 @@ export default Component.extend({
   columns: null,
   table: null,
 
+  classNames: ['row'],
+
   init() {
     this._super(...arguments);
     const table = new Table(this.get('columns'), this.get('model'));
