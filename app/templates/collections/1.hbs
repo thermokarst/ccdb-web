@@ -1,9 +1,135 @@
 <h2>Collection Detail</h2>
 
 <div class="row">
-  <div class="panel panel-default col-md-4">
-    <div class="panel-body">
-      asf
+  <div class="panel panel-default col-md-12">
+    <div class="panel-body table-responsive">
+      <table class="table table-border table-hover table-condensed">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Study Location</th>
+            <th>Method</th>
+            <th>Type</th>
+            <th># of Traps</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Experiments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Perchlorate</td>
+            <td>RS</td>
+            <td>MT</td>
+            <td>Embryos</td>
+            <td></td>
+            <td>2010-06-07</td>
+            <td>2010-06-07</td>
+            <td>Perchlorate diel; Perchlorate rescue</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-inline">
+      <div class="form-group">
+        <label>Experiment</label>
+        <select class="form-control">
+          <option>All</option>
+          <option selected=selected>Perchlorate diel</option>
+          <option>Perchlorate rescue</option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row top-buffer">
+  <div class="col-md-12">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#treatments" role="tab" data-toggle="tab">Treatments</a></li>
+      <li role="presentation"><a href="#treatment-replicates" role="tab" data-toggle="tab">Treatment Replicates</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="treatments">
+        <table class="table table-border table-hover table-condensed">
+          <thead>
+            <tr>
+              <th>Experiment</th>
+              <th>Type</th>
+              <th>Species</th>
+              <th>Sex</th>
+              <th>Container</th>
+              <th>Replicates</th>
+              <th>Flaw</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Perchlorate diel</td>
+              <td>10 ppm perchlorate, iodide supplemented</td>
+              <td>Threespine stickleback</td>
+              <td>Both Sexes</td>
+              <td>Jar</td>
+              <td>1; 2; 3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Perchlorate diel</td>
+              <td>10 ppm perchlorate, iodide supplemented</td>
+              <td>Threespine stickleback</td>
+              <td>Both Sexes</td>
+              <td>Jar</td>
+              <td>1; 2; 3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Perchlorate diel</td>
+              <td>10 ppm perchlorate, iodide supplemented</td>
+              <td>Threespine stickleback</td>
+              <td>Both Sexes</td>
+              <td>Jar</td>
+              <td>1; 2; 3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Perchlorate diel</td>
+              <td>10 ppm perchlorate, iodide supplemented</td>
+              <td>Threespine stickleback</td>
+              <td>Both Sexes</td>
+              <td>Jar</td>
+              <td>1; 2; 3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Perchlorate diel</td>
+              <td>10 ppm perchlorate, iodide supplemented</td>
+              <td>Threespine stickleback</td>
+              <td>Both Sexes</td>
+              <td>Jar</td>
+              <td>1; 2; 3</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Perchlorate diel</td>
+              <td>10 ppm perchlorate, iodide supplemented</td>
+              <td>Threespine stickleback</td>
+              <td>Both Sexes</td>
+              <td>Jar</td>
+              <td>1; 2; 3</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="treatment-replicates">...</div>
     </div>
   </div>
 </div>
