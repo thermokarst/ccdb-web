@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('logout');
   this.route('collections', function() {
     this.route('1');
+    this.route('new');
   });
 });
 
