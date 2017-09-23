@@ -1,3 +1,15 @@
+[data-ember-action]:not(:disabled) {
+  cursor: pointer;
+}
+
+.table-nav .pager {
+  margin-top: 10px;
+}
+
+.table-stats {
+  margin-top: 10px;
+}
+
 .form-signin {
   max-width: 330px;
   padding: 15px;

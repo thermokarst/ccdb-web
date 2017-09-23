@@ -4,10 +4,11 @@ import Table from 'ember-light-table';
 const { Component } = Ember;
 
 export default Component.extend({
+  // ARGS
   model: null,
   columns: null,
-  table: null,
 
+  table: null,
   init() {
     this._super(...arguments);
     const table = new Table(this.get('columns'), this.get('model'));
