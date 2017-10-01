@@ -1,12 +1,12 @@
 {{#if hasBlock}}
   {{yield (hash
-    table=(component 'light-table' table=table)
-    pagination=(component 'ccdb-pagination' model=model changePage=(action changePage))
+    grid=(component 'light-table' table=table onRowClicked=(action (optional onRowClicked)))
+    pagination=(component 'ccdb-pagination' model=model changePage=(action (optional changePage)))
   )}}
 {{else}}
-  {{ccdb-pagination model=model changePage=(action changePage)}}
+  {{ccdb-pagination model=model changePage=(action (optional changePage))}}
   {{#light-table table tableClassNames="table table-striped" as |t|}}
     {{t.head}}
-    {{t.body}}
+    {{t.body onRowClick=(action (optional onRowClick))}}
   {{/light-table}}
 {{/if}}

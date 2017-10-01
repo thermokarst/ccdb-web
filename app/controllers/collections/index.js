@@ -10,5 +10,8 @@ export default Controller.extend({
     changePage(page) {
       this.set('page', page);
     },
+    rowClick(row) {
+      this.transitionToRoute('collections.detail', row.get('id'));
+    },
   },
 });
