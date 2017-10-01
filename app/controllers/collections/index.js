@@ -13,5 +13,8 @@ export default Controller.extend({
     rowClick(row) {
       this.transitionToRoute('collections.detail', row.get('id'));
     },
+    createCollection() {
+      this.transitionToRoute('collections.create');
+    },
   },
 });

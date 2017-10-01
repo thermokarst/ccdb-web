@@ -1,0 +1,107 @@
+{{#crud-form
+  changeset=changeset
+  onSave=(action onSave)
+  onCancel=(action onCancel) as |f|
+}}
+  <div class="well">
+    {{#f.content class='form-horizontal'}}
+      <div class="form-group">
+        <label class="col-md-2 control-label">Project</label>
+        <div class="col-md-10">
+          {{#power-select
+            options=projectOptions
+            selected=changeset.project
+            onchange=(action (mut changeset.project))
+            searchField='name'
+            as |project|
+          }}
+            {{project.name}}
+          {{/power-select}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Study location</label>
+        <div class="col-md-10">
+          {{#power-select
+            options=studyLocationOptions
+            selected=changeset.studyLocation
+            onchange=(action (mut changeset.studyLocation))
+            searchField='name'
+            as |studyLocation|
+          }}
+            {{studyLocation.name}}
+          {{/power-select}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Collection type</label>
+        <div class="col-md-10">
+          {{#power-select
+            options=collectionTypeOptions
+            selected=changeset.collectionType
+            onchange=(action (mut changeset.collectionType))
+            searchField='name'
+            as |collectionType|
+          }}
+            {{collectionType.name}}
+          {{/power-select}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Collection method</label>
+        <div class="col-md-10">
+          {{#power-select
+            options=collectionMethodOptions
+            selected=changeset.collectionMethod
+            onchange=(action (mut changeset.collectionMethod))
+            searchField='name'
+            as |collectionMethod|
+          }}
+            {{collectionMethod.name}}
+          {{/power-select}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Number of traps</label>
+        <div class="col-md-10">
+          {{input value=changeset.numberOfTraps type='number' class='form-control'}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Collection start date</label>
+        <div class="col-md-10">
+          {{input value=changeset.collectionStartDate type='date' class='form-control'}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Collection start time</label>
+        <div class="col-md-10">
+          {{input value=changeset.collectionStartTime type='time' class='form-control'}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Collection end date</label>
+        <div class="col-md-10">
+          {{input value=changeset.collectionEndDate type='date' class='form-control'}}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Collection end time</label>
+        <div class="col-md-10">
+          {{input value=changeset.collectionEndTime type='time' class='form-control'}}
+        </div>
+      </div>
+
+    {{/f.content}}
+
+    {{f.save}} {{f.cancel}}
+  </div>
+{{/crud-form}}

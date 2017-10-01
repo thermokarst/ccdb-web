@@ -4,7 +4,7 @@ import DS from 'ember-data';
 const { computed } = Ember;
 const { Model, attr, belongsTo } = DS;
 
-export default Model.extend({
+export const schema = {
   displayName:         attr('string'),
   numberOfTraps:       attr('number'),
   collectionStartDate: attr('string-null-to-empty'),
@@ -16,7 +16,9 @@ export default Model.extend({
   studyLocation:    belongsTo('study-location'),
   collectionMethod: belongsTo('collection-method'),
   collectionType:   belongsTo('collection-type'),
+};
 
+export default Model.extend(Object.assign({}, schema, {
   startDateTime: computed('collectionStartDate', 'collectionStartTime',
     function() { return this._mergeDateTime('Start'); }),
 
@@ -28,4 +30,4 @@ export default Model.extend({
     const time = this.get(`collection${timepoint}Time`);
     return `${date} ${time}`.trim();
   },
-});
+}));

@@ -1,0 +1,15 @@
+{{#if hasBlock}}
+  {{yield (hash
+    content=(component 'form-content' changeset=changeset)
+    cancel=(component 'action-button'
+            label='Cancel'
+            isDanger=true
+            onClick=(action onCancel changeset))
+    save=(component 'action-button'
+          label='Save'
+          isSuccess=true
+          onClick=(action onSave changeset))
+  )}}
+{{else}}
+  MISSING CONTENT BLOCK
+{{/if}}
