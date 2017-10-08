@@ -11,7 +11,9 @@ Router.map(function() {
   this.route('logout');
   this.route('collections', function() {
     this.route('create');
-    this.route('detail', { path: '/:collection_id' });
+    this.route('detail', { path: '/:collection_id' }, function() {
+      this.route('edit');
+    });
   });
 });
 

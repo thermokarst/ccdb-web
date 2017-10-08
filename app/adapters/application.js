@@ -9,4 +9,11 @@ export default JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: API_NAMESPACE,
   host: API_HOST,
   authorizer: 'authorizer:application',
+  // DRF-JSON-API returns 400 by default
+  handleResponse(status, headers, payload) {
+    if (status === 400 && payload.errors) {
+      return new DS.InvalidError(payload.errors);
+    }
+    return this._super(...arguments);
+  }
 });

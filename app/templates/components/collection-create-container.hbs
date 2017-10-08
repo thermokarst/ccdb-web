@@ -4,25 +4,20 @@
   onCancel=(action onCancel) as |f|
 }}
   <div class="well">
-    {{#f.content class='form-horizontal'}}
-      <div class="form-group">
-        <label class="col-md-2 control-label">Project</label>
-        <div class="col-md-10">
-          {{#power-select
-            options=projectOptions
-            selected=changeset.project
-            onchange=(action (mut changeset.project))
-            searchField='name'
-            as |project|
-          }}
-            {{project.name}}
-          {{/power-select}}
-        </div>
-      </div>
+    {{#f.content class='form'}}
+      {{#validated-field property='project' label='Project' changeset=changeset}}
+        {{#power-select
+          options=projectOptions
+          selected=changeset.project
+          onchange=(action (mut changeset.project))
+          searchField='name'
+          as |project|
+        }}
+          {{project.name}}
+        {{/power-select}}
+      {{/validated-field}}
 
-      <div class="form-group">
-        <label class="col-md-2 control-label">Study location</label>
-        <div class="col-md-10">
+      {{#validated-field property='studyLocation' label='Study location' changeset=changeset}}
           {{#power-select
             options=studyLocationOptions
             selected=changeset.studyLocation
@@ -32,12 +27,9 @@
           }}
             {{studyLocation.name}}
           {{/power-select}}
-        </div>
-      </div>
+      {{/validated-field}}
 
-      <div class="form-group">
-        <label class="col-md-2 control-label">Collection type</label>
-        <div class="col-md-10">
+      {{#validated-field property='collectionType' label='Collection type' changeset=changeset}}
           {{#power-select
             options=collectionTypeOptions
             selected=changeset.collectionType
@@ -47,58 +39,39 @@
           }}
             {{collectionType.name}}
           {{/power-select}}
-        </div>
-      </div>
+      {{/validated-field}}
 
-      <div class="form-group">
-        <label class="col-md-2 control-label">Collection method</label>
-        <div class="col-md-10">
-          {{#power-select
-            options=collectionMethodOptions
-            selected=changeset.collectionMethod
-            onchange=(action (mut changeset.collectionMethod))
-            searchField='name'
-            as |collectionMethod|
-          }}
-            {{collectionMethod.name}}
-          {{/power-select}}
-        </div>
-      </div>
+      {{#validated-field property='collectionMethod' label='Collection method' changeset=changeset}}
+        {{#power-select
+          options=collectionMethodOptions
+          selected=changeset.collectionMethod
+          onchange=(action (mut changeset.collectionMethod))
+          searchField='name'
+          as |collectionMethod|
+        }}
+          {{collectionMethod.name}}
+        {{/power-select}}
+      {{/validated-field}}
 
-      <div class="form-group">
-        <label class="col-md-2 control-label">Number of traps</label>
-        <div class="col-md-10">
-          {{input value=changeset.numberOfTraps type='number' class='form-control'}}
-        </div>
-      </div>
+      {{#validated-field property='numberOfTraps' label='Number of traps' changeset=changeset}}
+        {{input value=changeset.numberOfTraps type='number' class='form-control'}}
+      {{/validated-field}}
 
-      <div class="form-group">
-        <label class="col-md-2 control-label">Collection start date</label>
-        <div class="col-md-10">
-          {{input value=changeset.collectionStartDate type='date' class='form-control'}}
-        </div>
-      </div>
+      {{#validated-field property='collectionStartDate' label='Collection start date' changeset=changeset}}
+        {{input value=changeset.collectionStartDate type='date' class='form-control'}}
+      {{/validated-field}}
 
-      <div class="form-group">
-        <label class="col-md-2 control-label">Collection start time</label>
-        <div class="col-md-10">
-          {{input value=changeset.collectionStartTime type='time' class='form-control'}}
-        </div>
-      </div>
+      {{#validated-field property='collectionStartTime' label='Collection start time' changeset=changeset}}
+        {{input value=changeset.collectionStartTime type='time' class='form-control'}}
+      {{/validated-field}}
 
-      <div class="form-group">
-        <label class="col-md-2 control-label">Collection end date</label>
-        <div class="col-md-10">
-          {{input value=changeset.collectionEndDate type='date' class='form-control'}}
-        </div>
-      </div>
+      {{#validated-field property='collectionEndDate' label='Collection end date' changeset=changeset}}
+        {{input value=changeset.collectionEndDate type='date' class='form-control'}}
+      {{/validated-field}}
 
-      <div class="form-group">
-        <label class="col-md-2 control-label">Collection end time</label>
-        <div class="col-md-10">
-          {{input value=changeset.collectionEndTime type='time' class='form-control'}}
-        </div>
-      </div>
+      {{#validated-field property='collectionEndTime' label='Collection end time' changeset=changeset}}
+        {{input value=changeset.collectionEndTime type='time' class='form-control'}}
+      {{/validated-field}}
 
     {{/f.content}}
 

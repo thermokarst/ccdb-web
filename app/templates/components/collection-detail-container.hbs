@@ -1,3 +1,10 @@
+{{
+  action-button
+  isPrimary=true
+  label='Edit Collection'
+  onClick=(action editCollection)
+}}
+
 {{#ccdb-table model=model columns=columns as |c|}}
   {{#c.grid as |g|}}
     {{g.head}}
