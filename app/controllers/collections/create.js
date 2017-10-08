@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import CollectionValidations from '../../validations/collection';
-import { schema } from '../../models/collection';
-import ValidationMixin from '../../mixins/validation';
+import CollectionValidations from 'ccdb-web/validations/collection';
+import { schema } from 'ccdb-web/models/collection';
+import ValidationMixin from 'ccdb-web/mixins/validation';
 
 const { Controller } = Ember;
 
