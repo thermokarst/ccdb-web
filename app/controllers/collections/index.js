@@ -1,10 +1,36 @@
 import Ember from 'ember';
 
-const { Controller } = Ember;
+const { Controller, computed, get, set } = Ember;
+
 
 export default Controller.extend({
-  queryParams: ['page'],
+  queryParams: ['page', 'project', 'region', 'site', 'study_location',
+                'collection_method', 'number_of_traps', 'collection_start_date',
+                'collection_end_date'],
   page: 1,
+  project: [],
+  region: [],
+  site: [],
+  study_location: [],
+  collection_method: [],
+  number_of_traps: '',
+  collection_start_date: '',
+  collection_end_date: '',
+
+  options: computed('projectOptions', 'regionOptions', 'siteOptions',
+                    'studyLocationOptions', 'collectionMethodOptions', function() {
+    return {
+      projects: this.get('projectOptions'),
+      regions: this.get('regionOptions'),
+      sites: this.get('siteOptions'),
+      studyLocations: this.get('studyLocationOptions'),
+      collectionMethods: this.get('collectionMethodOptions'),
+    };
+  }),
+
+  _coerceId(model) {
+    return +get(model, 'id');
+  },
 
   actions: {
     changePage(page) {
@@ -15,6 +41,31 @@ export default Controller.extend({
     },
     createCollection() {
       this.transitionToRoute('collections.create');
+    },
+    changeFilter(filter) {
+      // Need to reset the page so that things don't get weird
+      set(this, 'page', 1);
+
+      const filterModelFields = ['project', 'region', 'site', 'study_location',
+                                 'collection_method'];
+
+      filterModelFields.forEach((field) => {
+        let fields = get(filter, field);
+        fields = fields.map(this._coerceId);
+        set(this, field, fields);
+      });
+
+      set(this, 'number_of_traps', get(filter, 'number_of_traps'));
+
+      ['collection_start_date', 'collection_end_date'].forEach((field) => {
+        let value = get(filter, field);
+        if (value) {
+          value = value.toJSON().split('T')[0];
+        } else {
+          value = '';
+        }
+        set(this, field, value);
+      });
     },
   },
 });

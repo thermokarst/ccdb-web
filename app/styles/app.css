@@ -50,6 +50,10 @@
   border-top-right-radius: 0;
 }
 
+.top-buffer {
+  margin-top: 20px;
+}
+
 /* Sidebar */
 .sidebar {
   position: fixed;

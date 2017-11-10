@@ -4,6 +4,119 @@
   label='New Collection'
   onClick=(action createCollection)
 }}
+
+<hr>
+
+{{#ccdb-filter
+  filters=filters
+  options=options
+}}
+  <div class="well">
+    <div class="row">
+      <div class="col-md-3">
+        <label>Projects</label>
+        {{#power-select-multiple
+          options=options.projects
+          selected=filters.project
+          onchange=(action (mut filters.project))
+          searchField='name'
+          as |project|
+        }}
+          {{project.name}}
+        {{/power-select-multiple}}
+      </div>
+      <div class="col-md-3">
+        <label>Regions</label>
+        {{#power-select-multiple
+          options=options.regions
+          selected=filters.region
+          onchange=(action (mut filters.region))
+          searchField='name'
+          as |region|
+        }}
+          {{region.name}}
+        {{/power-select-multiple}}
+      </div>
+      <div class="col-md-3">
+        <label>Sites</label>
+        {{#power-select-multiple
+          options=options.sites
+          selected=filters.site
+          onchange=(action (mut filters.site))
+          searchField='name'
+          as |site|
+        }}
+          {{site.name}}
+        {{/power-select-multiple}}
+      </div>
+      <div class="col-md-3">
+        <label>Study Locations</label>
+        {{#power-select-multiple
+          options=options.studyLocations
+          selected=filters.study_location
+          onchange=(action (mut filters.study_location))
+          searchField='code'
+          as |studyLocation|
+        }}
+          {{studyLocation.code}}
+        {{/power-select-multiple}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>Collection Methods</label>
+        {{#power-select-multiple
+          options=options.collectionMethods
+          selected=filters.collection_method
+          onchange=(action (mut filters.collection_method))
+          searchField='name'
+          as |collectionMethod|
+        }}
+          {{collectionMethod.name}}
+        {{/power-select-multiple}}
+      </div>
+      <div class="col-md-3">
+        <label>Number of Traps</label>
+        {{input type="text" class="form-control" value=filters.number_of_traps}}
+      </div>
+      <div class="col-md-3">
+        <label>Start Date</label>
+        {{
+          pikaday-input
+          onSelection=(action (mut filters.collection_start_date))
+          value=filters.collection_start_date
+          useUTC=true
+          format='YYYY-MM-DD'
+          class='form-control'
+        }}
+      </div>
+      <div class="col-md-3">
+        <label>End Date</label>
+        {{
+          pikaday-input
+          onSelection=(action (mut filters.collection_end_date))
+          value=filters.collection_end_date
+          useUTC=true
+          format='YYYY-MM-DD'
+          class='form-control'
+        }}
+      </div>
+    </div>
+
+    <div class="row top-buffer">
+      <div class="col-md-12">
+        {{
+          action-button
+          isSuccess=true
+          label='Search'
+          onClick=(action changeFilter filters)
+        }}
+      </div>
+    </div>
+  </div>
+{{/ccdb-filter}}
+
 {{
   ccdb-table
   model=model
