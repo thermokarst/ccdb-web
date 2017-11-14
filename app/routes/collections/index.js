@@ -14,12 +14,13 @@ export default Route.extend({
     number_of_traps: { refreshModel: true },
     collection_start_date: { refreshModel: true },
     collection_end_date: { refreshModel: true },
+    adfg_permit: { refreshModel: true },
   },
 
   model(params) {
     const store = this.get('store');
     const opts = {
-      include: 'project,study-location,study-location.site,site,collection-method',
+      include: 'project,study-location,study-location.site,site,collection-method,adfg-permit',
     };
 
     return RSVP.hash({
@@ -28,6 +29,7 @@ export default Route.extend({
       siteOptions: store.findAll('site'),
       studyLocationOptions: store.findAll('study-location'),
       collectionMethodOptions: store.findAll('collection-method'),
+      adfgPermitOptions: store.findAll('adfg-permit'),
       model: store.query('collection', Object.assign(params, opts)),
     });
   },
@@ -53,6 +55,9 @@ export default Route.extend({
     let collectionMethod = controller.get('collection_method');
     collectionMethod = collectionMethod.map(id => store.peekRecord('collection-method', id));
 
+    let adfgPermit = controller.get('adfg_permit');
+    adfgPermit = adfgPermit.map(id => store.peekRecord('adfg-permit', id));
+
     const numberOfTraps = controller.get('number_of_traps');
     const collectionStartDate = controller.get('collection_start_date');
     const collectionEndDate = controller.get('collection_end_date');
@@ -66,6 +71,7 @@ export default Route.extend({
       number_of_traps: numberOfTraps,
       collection_start_date: collectionStartDate,
       collection_end_date: collectionEndDate,
+      adfg_permit: adfgPermit,
     }
     controller.set('filters', filter);
   },

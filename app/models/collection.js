@@ -16,6 +16,7 @@ export const schema = {
   studyLocation:    belongsTo('study-location'),
   collectionMethod: belongsTo('collection-method'),
   collectionType:   belongsTo('collection-type'),
+  adfgPermit:       belongsTo('adfg-permit'),
 };
 
 export default Model.extend(Object.assign({}, schema, {

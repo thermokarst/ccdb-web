@@ -8,6 +8,7 @@ export default Component.extend({
 
   columns: [
     { label: 'Project', valuePath: 'project.name', },
+    { label: 'IACUC', valuePath: 'project.iacucNumber', },
     { label: 'Region', valuePath: 'studyLocation.site.region.name', },
     { label: 'Site', valuePath: 'studyLocation.site.name', },
     { label: 'Study Location', valuePath: 'studyLocation.code', },
@@ -15,5 +16,6 @@ export default Component.extend({
     { label: '# of Traps', valuePath: 'numberOfTraps', },
     { label: 'Start', valuePath: 'startDateTime', },
     { label: 'End', valuePath: 'endDateTime', },
+    { label: 'ADFG Permit', valuePath: 'adfgPermit.name', },
   ],
 });

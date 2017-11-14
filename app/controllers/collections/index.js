@@ -6,25 +6,28 @@ const { Controller, computed, get, set } = Ember;
 export default Controller.extend({
   queryParams: ['page', 'project', 'region', 'site', 'study_location',
                 'collection_method', 'number_of_traps', 'collection_start_date',
-                'collection_end_date'],
+                'collection_end_date', 'adfg_permit'],
   page: 1,
   project: [],
   region: [],
   site: [],
   study_location: [],
   collection_method: [],
+  adfg_permit: [],
   number_of_traps: '',
   collection_start_date: '',
   collection_end_date: '',
 
   options: computed('projectOptions', 'regionOptions', 'siteOptions',
-                    'studyLocationOptions', 'collectionMethodOptions', function() {
+                    'studyLocationOptions', 'collectionMethodOptions',
+                    'adfgPermitOptions', function() {
     return {
       projects: this.get('projectOptions'),
       regions: this.get('regionOptions'),
       sites: this.get('siteOptions'),
       studyLocations: this.get('studyLocationOptions'),
       collectionMethods: this.get('collectionMethodOptions'),
+      adfgPermits: this.get('adfgPermitOptions'),
     };
   }),
 
@@ -42,12 +45,21 @@ export default Controller.extend({
     createCollection() {
       this.transitionToRoute('collections.create');
     },
+    resetFilter() {
+      set(this, 'page', 1);
+      ['project', 'region', 'site', 'study_location', 'collection_method', 'adfg_permit'].forEach((field) => {
+        set(this, field, []);
+      });
+      ['number_of_traps', 'collection_start_date', 'collection_end_date'].forEach((field) => {
+        set(this, field, '');
+      });
+    },
     changeFilter(filter) {
       // Need to reset the page so that things don't get weird
       set(this, 'page', 1);
 
       const filterModelFields = ['project', 'region', 'site', 'study_location',
-                                 'collection_method'];
+                                 'collection_method', 'adfg_permit'];
 
       filterModelFields.forEach((field) => {
         let fields = get(filter, field);

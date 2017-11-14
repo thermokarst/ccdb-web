@@ -64,7 +64,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <label>Collection Methods</label>
         {{#power-select-multiple
           options=options.collectionMethods
@@ -76,11 +76,26 @@
           {{collectionMethod.name}}
         {{/power-select-multiple}}
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <label>Number of Traps</label>
         {{input type="text" class="form-control" value=filters.number_of_traps}}
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
+        <label>ADFG Permit</label>
+        {{#power-select-multiple
+          options=options.adfgPermits
+          selected=filters.adfg_permit
+          onchange=(action (mut filters.adfg_permit))
+          searchField='name'
+          as |adfgPermit|
+        }}
+          {{adfgPermit.name}}
+        {{/power-select-multiple}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
         <label>Start Date</label>
         {{
           pikaday-input
@@ -91,7 +106,7 @@
           class='form-control'
         }}
       </div>
-      <div class="col-md-3">
+      <div class="col-md-6">
         <label>End Date</label>
         {{
           pikaday-input
@@ -106,12 +121,20 @@
 
     <div class="row top-buffer">
       <div class="col-md-12">
-        {{
-          action-button
-          isSuccess=true
-          label='Search'
-          onClick=(action changeFilter filters)
-        }}
+        <div class="btn-group">
+          {{
+            action-button
+            isSuccess=true
+            label='Search'
+            onClick=(action changeFilter filters)
+          }}
+          {{
+            action-button
+            isWarning=true
+            label='Reset'
+            onClick=(action resetFilter)
+          }}
+        </div>
       </div>
     </div>
   </div>
