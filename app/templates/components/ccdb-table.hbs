@@ -5,8 +5,10 @@
   )}}
 {{else}}
   {{ccdb-pagination model=model changePage=(action (optional changePage))}}
-  {{#light-table table tableClassNames="table table-striped" as |t|}}
-    {{t.head}}
-    {{t.body onRowClick=(action (optional onRowClick))}}
-  {{/light-table}}
+  <div class="table-responsive">
+    {{#light-table table tableClassNames="table table-striped" as |t|}}
+      {{t.head}}
+      {{t.body onRowClick=(action (optional onRowClick))}}
+    {{/light-table}}
+  </div>
 {{/if}}

@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 const { computed } = Ember;
-const { Model, attr, belongsTo } = DS;
+const { Model, attr, belongsTo, hasMany } = DS;
 
 export const schema = {
   displayName:         attr('string'),
@@ -12,11 +12,23 @@ export const schema = {
   collectionEndDate:   attr('string-null-to-empty'),
   collectionEndTime:   attr('string-null-to-empty'),
 
-  project:          belongsTo('project'),
-  studyLocation:    belongsTo('study-location'),
-  collectionMethod: belongsTo('collection-method'),
-  collectionType:   belongsTo('collection-type'),
-  adfgPermit:       belongsTo('adfg-permit'),
+  project:           belongsTo('project'),
+  studyLocation:     belongsTo('study-location'),
+  collectionMethod:  belongsTo('collection-method'),
+  collectionType:    belongsTo('collection-type'),
+  adfgPermit:        belongsTo('adfg-permit'),
+
+  collectionSpecies: hasMany('collection-species', { async: false }),
+
+  species:          computed.mapBy('collectionSpecies', 'species'),
+  speciesNames:     computed.mapBy('species', 'commonName'),
+  counts:           computed.mapBy('collectionSpecies', 'count'),
+  speciesAndCounts: computed('speciesNames', 'counts', function() {
+    const speciesNames = this.get('speciesNames');
+    let counts = this.get('counts');
+    counts = counts.map(c => c !== null ? c : 'No Count');
+    return speciesNames.map((n, i) => `${n} (${counts[i]})`).join(', ');
+  }),
 };
 
 export default Model.extend(Object.assign({}, schema, {

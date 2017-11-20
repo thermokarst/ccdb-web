@@ -15,12 +15,15 @@ export default Route.extend({
     collection_start_date: { refreshModel: true },
     collection_end_date: { refreshModel: true },
     adfg_permit: { refreshModel: true },
+    species: { refreshModel: true },
   },
 
   model(params) {
     const store = this.get('store');
+    const includes = ['project', 'study-location', 'study-location.site', 'site',
+      'collection-method', 'adfg-permit', 'collection-species', 'collection-species.species'];
     const opts = {
-      include: 'project,study-location,study-location.site,site,collection-method,adfg-permit',
+      include: includes.join(','),
     };
 
     return RSVP.hash({
@@ -30,6 +33,7 @@ export default Route.extend({
       studyLocationOptions: store.findAll('study-location'),
       collectionMethodOptions: store.findAll('collection-method'),
       adfgPermitOptions: store.findAll('adfg-permit'),
+      speciesOptions: store.findAll('species'),
       model: store.query('collection', Object.assign(params, opts)),
     });
   },
@@ -58,6 +62,9 @@ export default Route.extend({
     let adfgPermit = controller.get('adfg_permit');
     adfgPermit = adfgPermit.map(id => store.peekRecord('adfg-permit', id));
 
+    let species = controller.get('species');
+    species = species.map(id => store.peekRecord('species', id));
+
     const numberOfTraps = controller.get('number_of_traps');
     const collectionStartDate = controller.get('collection_start_date');
     const collectionEndDate = controller.get('collection_end_date');
@@ -72,6 +79,7 @@ export default Route.extend({
       collection_start_date: collectionStartDate,
       collection_end_date: collectionEndDate,
       adfg_permit: adfgPermit,
+      species,
     }
     controller.set('filters', filter);
   },

@@ -95,7 +95,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <label>Start Date</label>
         {{
           pikaday-input
@@ -106,7 +106,7 @@
           class='form-control'
         }}
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <label>End Date</label>
         {{
           pikaday-input
@@ -116,6 +116,18 @@
           format='YYYY-MM-DD'
           class='form-control'
         }}
+      </div>
+      <div class="col-md-4">
+        <label>Species</label>
+        {{#power-select-multiple
+          options=options.species
+          selected=filters.species
+          onchange=(action (mut filters.species))
+          searchField='commonName'
+          as |species|
+        }}
+          {{species.commonName}}
+        {{/power-select-multiple}}
       </div>
     </div>
 

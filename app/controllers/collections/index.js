@@ -6,7 +6,7 @@ const { Controller, computed, get, set } = Ember;
 export default Controller.extend({
   queryParams: ['page', 'project', 'region', 'site', 'study_location',
                 'collection_method', 'number_of_traps', 'collection_start_date',
-                'collection_end_date', 'adfg_permit'],
+                'collection_end_date', 'adfg_permit', 'species'],
   page: 1,
   project: [],
   region: [],
@@ -14,13 +14,14 @@ export default Controller.extend({
   study_location: [],
   collection_method: [],
   adfg_permit: [],
+  species: [],
   number_of_traps: '',
   collection_start_date: '',
   collection_end_date: '',
 
   options: computed('projectOptions', 'regionOptions', 'siteOptions',
                     'studyLocationOptions', 'collectionMethodOptions',
-                    'adfgPermitOptions', function() {
+                    'adfgPermitOptions', 'speciesOptions', function() {
     return {
       projects: this.get('projectOptions'),
       regions: this.get('regionOptions'),
@@ -28,6 +29,7 @@ export default Controller.extend({
       studyLocations: this.get('studyLocationOptions'),
       collectionMethods: this.get('collectionMethodOptions'),
       adfgPermits: this.get('adfgPermitOptions'),
+      species: this.get('speciesOptions'),
     };
   }),
 
@@ -47,7 +49,8 @@ export default Controller.extend({
     },
     resetFilter() {
       set(this, 'page', 1);
-      ['project', 'region', 'site', 'study_location', 'collection_method', 'adfg_permit'].forEach((field) => {
+      ['project', 'region', 'site', 'study_location', 'collection_method',
+         'adfg_permit', 'species'].forEach((field) => {
         set(this, field, []);
       });
       ['number_of_traps', 'collection_start_date', 'collection_end_date'].forEach((field) => {
@@ -59,7 +62,7 @@ export default Controller.extend({
       set(this, 'page', 1);
 
       const filterModelFields = ['project', 'region', 'site', 'study_location',
-                                 'collection_method', 'adfg_permit'];
+                                 'collection_method', 'adfg_permit', 'species'];
 
       filterModelFields.forEach((field) => {
         let fields = get(filter, field);
