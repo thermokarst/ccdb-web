@@ -1,80 +1,150 @@
 {{#crud-form
-  changeset=changeset
+  changesets=changesets
   onSave=(action onSave)
   onCancel=(action onCancel) as |f|
 }}
-  <div class="well">
-    {{#f.content class='form'}}
-      {{#validated-field property='project' label='Project' changeset=changeset}}
-        {{#power-select
-          options=projectOptions
-          selected=changeset.project
-          onchange=(action (mut changeset.project))
-          searchField='name'
-          as |project|
-        }}
-          {{project.name}}
-        {{/power-select}}
-      {{/validated-field}}
+  <div class="row">
+    <div class="col-md-4">
+      <div class="well">
+        {{#f.content class='form'}}
+          {{#with changesets.model as |changeset|}}
+            {{#validated-field property='project' label='Project' changeset=changeset}}
+              {{#power-select
+                options=options.projects
+                selected=changeset.project
+                onchange=(action (mut changeset.project))
+                searchField='name'
+                as |project|
+              }}
+                {{project.name}}
+              {{/power-select}}
+            {{/validated-field}}
 
-      {{#validated-field property='studyLocation' label='Study location' changeset=changeset}}
-          {{#power-select
-            options=studyLocationOptions
-            selected=changeset.studyLocation
-            onchange=(action (mut changeset.studyLocation))
-            searchField='name'
-            as |studyLocation|
-          }}
-            {{studyLocation.name}}
-          {{/power-select}}
-      {{/validated-field}}
+            {{#validated-field property='adfgPermit' label='ADFG Permit' changeset=changeset}}
+              {{#power-select
+                options=options.adfgPermits
+                selected=changeset.adfgPermit
+                onchange=(action (mut changeset.adfgPermit))
+                searchField='name'
+                as |adfgPermit|
+              }}
+                {{adfgPermit.name}}
+              {{/power-select}}
+            {{/validated-field}}
 
-      {{#validated-field property='collectionType' label='Collection type' changeset=changeset}}
-          {{#power-select
-            options=collectionTypeOptions
-            selected=changeset.collectionType
-            onchange=(action (mut changeset.collectionType))
-            searchField='name'
-            as |collectionType|
-          }}
-            {{collectionType.name}}
-          {{/power-select}}
-      {{/validated-field}}
+            {{#validated-field property='studyLocation' label='Study location' changeset=changeset}}
+                {{#power-select
+                  options=options.studyLocations
+                  selected=changeset.studyLocation
+                  onchange=(action (mut changeset.studyLocation))
+                  searchField='name'
+                  as |studyLocation|
+                }}
+                  {{studyLocation.name}}
+                {{/power-select}}
+            {{/validated-field}}
 
-      {{#validated-field property='collectionMethod' label='Collection method' changeset=changeset}}
-        {{#power-select
-          options=collectionMethodOptions
-          selected=changeset.collectionMethod
-          onchange=(action (mut changeset.collectionMethod))
-          searchField='name'
-          as |collectionMethod|
-        }}
-          {{collectionMethod.name}}
-        {{/power-select}}
-      {{/validated-field}}
+            {{#validated-field property='collectionType' label='Collection type' changeset=changeset}}
+                {{#power-select
+                  options=options.collectionTypes
+                  selected=changeset.collectionType
+                  onchange=(action (mut changeset.collectionType))
+                  searchField='name'
+                  as |collectionType|
+                }}
+                  {{collectionType.name}}
+                {{/power-select}}
+            {{/validated-field}}
 
-      {{#validated-field property='numberOfTraps' label='Number of traps' changeset=changeset}}
-        {{input value=changeset.numberOfTraps type='number' class='form-control'}}
-      {{/validated-field}}
+            {{#validated-field property='collectionMethod' label='Collection method' changeset=changeset}}
+              {{#power-select
+                options=options.collectionMethods
+                selected=changeset.collectionMethod
+                onchange=(action (mut changeset.collectionMethod))
+                searchField='name'
+                as |collectionMethod|
+              }}
+                {{collectionMethod.name}}
+              {{/power-select}}
+            {{/validated-field}}
 
-      {{#validated-field property='collectionStartDate' label='Collection start date' changeset=changeset}}
-        {{input value=changeset.collectionStartDate type='date' class='form-control'}}
-      {{/validated-field}}
+            {{#validated-field property='numberOfTraps' label='Number of traps' changeset=changeset}}
+              {{input value=changeset.numberOfTraps type='number' class='form-control'}}
+            {{/validated-field}}
 
-      {{#validated-field property='collectionStartTime' label='Collection start time' changeset=changeset}}
-        {{input value=changeset.collectionStartTime type='time' class='form-control'}}
-      {{/validated-field}}
+            {{#validated-field property='collectionStartDate' label='Collection start date' changeset=changeset}}
+              {{input value=changeset.collectionStartDate type='date' class='form-control'}}
+            {{/validated-field}}
 
-      {{#validated-field property='collectionEndDate' label='Collection end date' changeset=changeset}}
-        {{input value=changeset.collectionEndDate type='date' class='form-control'}}
-      {{/validated-field}}
+            {{#validated-field property='collectionStartTime' label='Collection start time' changeset=changeset}}
+              {{input value=changeset.collectionStartTime type='time' class='form-control'}}
+            {{/validated-field}}
 
-      {{#validated-field property='collectionEndTime' label='Collection end time' changeset=changeset}}
-        {{input value=changeset.collectionEndTime type='time' class='form-control'}}
-      {{/validated-field}}
+            {{#validated-field property='collectionEndDate' label='Collection end date' changeset=changeset}}
+              {{input value=changeset.collectionEndDate type='date' class='form-control'}}
+            {{/validated-field}}
 
-    {{/f.content}}
-
-    {{f.save}} {{f.cancel}}
+            {{#validated-field property='collectionEndTime' label='Collection end time' changeset=changeset}}
+              {{input value=changeset.collectionEndTime type='time' class='form-control'}}
+            {{/validated-field}}
+          {{/with}}
+        {{/f.content}}
+      </div>
+    </div>
+    <div class="col-md-8">
+      <table class="table">
+        <caption>
+          Species / Count Info
+          {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addCollectionSpecies')}}
+        </caption>
+        <thead>
+          <tr>
+            <th class="col-md-3">Species</th>
+            <th class="col-md-3">Count</th>
+            <th class="col-md-3">Count Estimated</th>
+            <th class="col-md-3">Sex</th>
+            <th class="col-md-1">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each changesets.hasMany.collectionSpecies as |cs|}}
+            <tr class="form">
+              <td class="col-md-3">
+                {{#validated-field property='species' changeset=cs.changeset}}
+                  {{#power-select
+                    options=options.species
+                    selected=cs.changeset.species
+                    onchange=(action (mut cs.changeset.species))
+                    searchField='commonName'
+                    as |species|
+                  }}
+                    {{species.commonName}}
+                  {{/power-select}}
+                {{/validated-field}}
+              </td>
+              <td class="col-md-3">
+                {{#validated-field property='count' changeset=cs.changeset}}
+                  {{input value=cs.changeset.count}}
+                {{/validated-field}}
+              </td>
+              <td class="col-md-3">
+                {{#validated-field property='countEstimated' changeset=cs.changeset}}
+                  {{input checked=cs.changeset.countEstimated type='checkbox'}}
+                {{/validated-field}}
+              </td>
+              <td class="col-md-3">
+                {{#validated-field property='sex' changeset=cs.changeset}}
+                  {{input value=cs.changeset.sex}}
+                {{/validated-field}}
+              </td>
+              <th class="col-md-2">
+                {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteCollectionSpecies' cs)}}
+              </th>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   </div>
+  {{f.save}} {{f.cancel}}
 {{/crud-form}}

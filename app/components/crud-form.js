@@ -4,5 +4,5 @@ const { Component } = Ember;
 
 export default Component.extend({
   // ARGS
-  changeset: null,
+  changesets: null,
 });

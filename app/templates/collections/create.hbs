@@ -1,11 +1,10 @@
 {{
   collection/create-container
   model=model
-  validations=CollectionValidations
-  projectOptions=projectOptions
-  studyLocationOptions=studyLocationOptions
-  collectionTypeOptions=collectionTypeOptions
-  collectionMethodOptions=collectionMethodOptions
+  validations=(hash
+    collection=CollectionValidations
+    collectionSpecies=CollectionSpeciesValidations)
+  options=options
   onSave=(action 'onSave')
   onCancel=(action 'onCancel')
 }}

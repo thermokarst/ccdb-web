@@ -11,6 +11,8 @@ export default Route.extend({
       studyLocationOptions: store.findAll('study-location'),
       collectionTypeOptions: store.findAll('collection-type'),
       collectionMethodOptions: store.findAll('collection-method'),
+      speciesOptions: store.findAll('species'),
+      adfgPermitOptions: store.findAll('adfg-permit'),
     });
   },
 

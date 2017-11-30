@@ -1,17 +1,31 @@
 import Ember from 'ember';
 import CollectionValidations from 'ccdb-web/validations/collection';
-import { schema } from 'ccdb-web/models/collection';
+import CollectionSpeciesValidations from 'ccdb-web/validations/collection-species';
 import ValidationMixin from 'ccdb-web/mixins/validation';
 
-const { Controller } = Ember;
+const { Controller, computed } = Ember;
 
 export default Controller.extend(ValidationMixin, {
   CollectionValidations,
+  CollectionSpeciesValidations,
+
+  options: computed('projectOptions', 'studyLocationOptions',
+                    'collectionTypeOptions', 'collectionMethodOptions',
+                    'speciesOptions', 'adfgPermitOptions', function() {
+    return {
+      projects: this.get('projectOptions'),
+      studyLocations: this.get('studyLocationOptions'),
+      collectionTypes: this.get('collectionTypeOptions'),
+      collectionMethods: this.get('collectionMethodOptions'),
+      species: this.get('speciesOptions'),
+      adfgPermits: this.get('adfgPermitOptions'),
+    };
+  }),
 
   actions: {
     onSave(changeset) {
       const postSave = () => { this.transitionToRoute('collections.index'); };
-      return this.validationSave(changeset, schema, postSave);
+      return this.validationSave(changeset, postSave);
     },
     onCancel(changeset) {
       const postCancel = () => { this.transitionToRoute('collections.index'); };

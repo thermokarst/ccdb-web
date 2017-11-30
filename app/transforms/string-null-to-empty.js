@@ -8,6 +8,6 @@ export default Transform.extend({
   },
 
   serialize(deserialized) {
-    return deserialized;
+    return deserialized === '' ? null : deserialized;
   }
 });

@@ -11,4 +11,8 @@ export default Component.extend({
     const property = this.get('property');
     return isEmpty(get(changeset, `error.${property}`));
   }),
+
+  hasLabel: computed('label', function() {
+    return !isEmpty(get(this, 'label'));
+  }),
 });
