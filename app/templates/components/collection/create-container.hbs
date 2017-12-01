@@ -137,13 +137,50 @@
                   {{input value=cs.changeset.sex}}
                 {{/validated-field}}
               </td>
-              <th class="col-md-2">
+              <td class="col-md-2">
                 {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteCollectionSpecies' cs)}}
-              </th>
+              </td>
             </tr>
           {{/each}}
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form enctype="multipart/form-data">
+      <table class="table">
+        <caption>
+          Attachments
+          {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addDatasheet')}}
+        </caption>
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each changesets.hasMany.datasheets as |d|}}
+            <tr class="form">
+              <td>
+                {{#if d.model.isNew}}
+                  {{#validated-field property='datasheet' changeset=d.changeset}}
+                    <input type="file" onchange={{action 'updateDatasheet' d.changeset}} accept="image/png,image/jpeg,application/pdf">
+                  {{/validated-field}}
+                {{else}}
+                  <a href="{{ d.model.datasheet }}">{{ d.model.datasheet }}</a>
+                {{/if}}
+              </td>
+              <td>
+                {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteDatasheet' d)}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      </form>
+
     </div>
   </div>
   {{f.save}} {{f.cancel}}

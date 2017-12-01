@@ -20,18 +20,27 @@ export default Component.extend({
                                         lookupValidator(validations['collection']),
                                         validations['collection']);
 
-    // TODO: gross, just grab these data in the route.
-    model.get('collectionSpecies').then((collectionSpecies) => {
-      let collectionSpeciesChangesets = [];
-      collectionSpecies.forEach((cs) => {
-        const changeset = new Changeset(cs,
-                                        lookupValidator(validations['collectionSpecies']),
-                                        validations['collectionSpecies']);
-        collectionSpeciesChangesets.push({ model: cs, changeset: changeset });
-      });
-      changesets['hasMany']['collectionSpecies'] = collectionSpeciesChangesets;
-      this.set('changesets', changesets);
+    let collectionSpeciesChangesets = [];
+    const collectionSpecies = model.get('collectionSpecies');
+    collectionSpecies.forEach((cs) => {
+      const changeset = new Changeset(cs,
+                                      lookupValidator(validations['collectionSpecies']),
+                                      validations['collectionSpecies']);
+      collectionSpeciesChangesets.push({ model: cs, changeset: changeset });
     });
+    changesets['hasMany']['collectionSpecies'] = collectionSpeciesChangesets;
+
+    let datasheetsChangesets = [];
+    const datasheets = model.get('datasheets');
+    datasheets.forEach((d) => {
+      const changeset = new Changeset(d,
+                                      lookupValidator(validations['datasheet']),
+                                      validations['datasheet']);
+      datasheetsChangesets.push({ model: d, changeset: changeset });
+    });
+    changesets['hasMany']['datasheets'] = datasheetsChangesets;
+
+    this.set('changesets', changesets);
   },
 
   actions: {
@@ -53,6 +62,30 @@ export default Component.extend({
       let changesets = this.get('changesets');
       changesets['delete'].pushObject(changesetRecord.model);
       changesets['hasMany']['collectionSpecies'].removeObject(changesetRecord);
+    },
+
+    updateDatasheet(changeset, event) {
+      changeset.set('datasheet', event.target.files[0]);
+    },
+
+    addDatasheet() {
+      const store = this.get('store');
+      let changesets = this.get('changesets');
+      const validations = this.get('validations');
+      const collection = this.get('model');
+      const d = store.createRecord('datasheet-attachment', { collection: collection });
+      collection.get('datasheets').pushObject(d);
+      changesets['new'].pushObject(d);
+      const changeset = new Changeset(d,
+                                      lookupValidator(validations['datasheets']),
+                                      validations['datasheets']);
+      changesets['hasMany']['datasheets'].pushObject({ model: d, changeset: changeset });
+    },
+
+    deleteDatasheet(changesetRecord) {
+      let changesets = this.get('changesets');
+      changesets['delete'].pushObject(changesetRecord.model);
+      changesets['hasMany']['datasheets'].removeObject(changesetRecord);
     },
   },
 });

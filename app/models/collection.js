@@ -19,6 +19,7 @@ export default Model.extend({
   adfgPermit:        belongsTo('adfg-permit'),
 
   collectionSpecies: hasMany('collection-species'),
+  datasheets:        hasMany('datasheet-attachment'),
 
   // computed
   species: computed.mapBy('collectionSpecies', 'species'),
