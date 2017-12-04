@@ -95,7 +95,7 @@
       <table class="table">
         <caption>
           Species / Count Info
-          {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addCollectionSpecies')}}
+          {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addHasMany' 'collection-species' 'collectionSpecies')}}
         </caption>
         <thead>
           <tr>
@@ -138,7 +138,7 @@
                 {{/validated-field}}
               </td>
               <td class="col-md-2">
-                {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteCollectionSpecies' cs)}}
+                {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteHasMany' cs 'collectionSpecies')}}
               </td>
             </tr>
           {{/each}}
@@ -152,7 +152,7 @@
       <table class="table">
         <caption>
           Attachments
-          {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addDatasheet')}}
+          {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addHasMany' 'datasheet-attachment' 'datasheets')}}
         </caption>
         <thead>
           <tr>
@@ -173,7 +173,7 @@
                 {{/if}}
               </td>
               <td>
-                {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteDatasheet' d)}}
+                {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteHasMany' d 'datasheets')}}
               </td>
             </tr>
           {{/each}}

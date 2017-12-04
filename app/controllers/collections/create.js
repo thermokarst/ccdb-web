@@ -11,6 +11,8 @@ export default Controller.extend(ValidationMixin, {
   CollectionSpeciesValidations,
   DatasheetValidations,
 
+  hasMany: ['collectionSpecies', 'datasheets'],
+
   options: computed('projectOptions', 'studyLocationOptions',
                     'collectionTypeOptions', 'collectionMethodOptions',
                     'speciesOptions', 'adfgPermitOptions', function() {
