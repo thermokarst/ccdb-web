@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import CleanupFormMixin from 'ccdb-web/mixins/cleanup-form';
 
 const { Route, RSVP } = Ember;
 
-export default Route.extend({
+export default Route.extend(CleanupFormMixin, {
   model() {
     const store = this.get('store');
     const model = this.modelFor('collections.detail');
