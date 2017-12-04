@@ -12,6 +12,7 @@ export default Controller.extend(ValidationMixin, {
   DatasheetValidations,
 
   hasMany: ['collectionSpecies', 'datasheets'],
+  safeNavigate: false,
 
   options: computed('projectOptions', 'studyLocationOptions',
                     'collectionTypeOptions', 'collectionMethodOptions',
@@ -29,15 +30,21 @@ export default Controller.extend(ValidationMixin, {
   actions: {
     onSave(changesets) {
       const postSave = () => {
+        this.set('safeNavigate', true);
         // Use the model's ID here because of the ArrayProxy in the route
         this.transitionToRoute('collections.detail', this.get('model.id'));
+        this.set('safeNavigate', false);
+        console.log('save');
       };
       return this.validationSave(changesets, postSave);
     },
     onCancel(changesets) {
       const postCancel = () => {
+        this.set('safeNavigate', true);
         // Use the model's ID here because of the ArrayProxy in the route
-        return this.transitionToRoute('collections.detail', this.get('model.id'));
+        this.transitionToRoute('collections.detail', this.get('model.id'));
+        this.set('safeNavigate', false);
+        console.log('cancel');
       };
       return this.validationCancel(changesets, postCancel);
     },
