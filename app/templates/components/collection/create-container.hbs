@@ -92,95 +92,105 @@
       </div>
     </div>
     <div class="col-md-8">
-      <table class="table">
-        <caption>
-          Species / Count Info
-          {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addHasMany' 'collection-species' 'collectionSpecies')}}
-        </caption>
-        <thead>
-          <tr>
-            <th class="col-md-3">Species</th>
-            <th class="col-md-3">Count</th>
-            <th class="col-md-3">Count Estimated</th>
-            <th class="col-md-3">Sex</th>
-            <th class="col-md-1">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each changesets.hasMany.collectionSpecies as |cs|}}
-            <tr class="form">
-              <td class="col-md-3">
-                {{#validated-field property='species' changeset=cs.changeset}}
-                  {{#power-select
-                    options=options.species
-                    selected=cs.changeset.species
-                    onchange=(action (mut cs.changeset.species))
-                    searchField='commonName'
-                    as |species|
-                  }}
-                    {{species.commonName}}
-                  {{/power-select}}
-                {{/validated-field}}
-              </td>
-              <td class="col-md-3">
-                {{#validated-field property='count' changeset=cs.changeset}}
-                  {{input value=cs.changeset.count}}
-                {{/validated-field}}
-              </td>
-              <td class="col-md-3">
-                {{#validated-field property='countEstimated' changeset=cs.changeset}}
-                  {{input checked=cs.changeset.countEstimated type='checkbox'}}
-                {{/validated-field}}
-              </td>
-              <td class="col-md-3">
-                {{#validated-field property='sex' changeset=cs.changeset}}
-                  {{input value=cs.changeset.sex}}
-                {{/validated-field}}
-              </td>
-              <td class="col-md-2">
-                {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteHasMany' cs 'collectionSpecies')}}
-              </td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <form enctype="multipart/form-data">
-      <table class="table">
-        <caption>
-          Attachments
-          {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addHasMany' 'datasheet-attachment' 'datasheets')}}
-        </caption>
-        <thead>
-          <tr>
-            <th>File</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each changesets.hasMany.datasheets as |d|}}
-            <tr class="form">
-              <td>
-                {{#if d.model.isNew}}
-                  {{#validated-field property='datasheet' changeset=d.changeset}}
-                    <input type="file" onchange={{action 'updateDatasheet' d.changeset}} accept="image/png,image/jpeg,application/pdf">
-                  {{/validated-field}}
-                {{else}}
-                  <a href="{{ d.model.datasheet }}">{{ d.model.datasheet }}</a>
-                {{/if}}
-              </td>
-              <td>
-                {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteHasMany' d 'datasheets')}}
-              </td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-      </form>
-
+      <div class="row">
+        <div class="col-md-12">
+          {{#validated-field property='notes' label='Notes' changeset=changesets.model}}
+            {{textarea value=changesets.model.notes class='form-control'}}
+          {{/validated-field}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <caption>
+              Species / Count Info
+              {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addHasMany' 'collection-species' 'collectionSpecies')}}
+            </caption>
+            <thead>
+              <tr>
+                <th class="col-md-3">Species</th>
+                <th class="col-md-3">Count</th>
+                <th class="col-md-3">Count Estimated</th>
+                <th class="col-md-3">Sex</th>
+                <th class="col-md-1">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each changesets.hasMany.collectionSpecies as |cs|}}
+                <tr class="form">
+                  <td class="col-md-3">
+                    {{#validated-field property='species' changeset=cs.changeset}}
+                      {{#power-select
+                        options=options.species
+                        selected=cs.changeset.species
+                        onchange=(action (mut cs.changeset.species))
+                        searchField='commonName'
+                        as |species|
+                      }}
+                        {{species.commonName}}
+                      {{/power-select}}
+                    {{/validated-field}}
+                  </td>
+                  <td class="col-md-3">
+                    {{#validated-field property='count' changeset=cs.changeset}}
+                      {{input value=cs.changeset.count}}
+                    {{/validated-field}}
+                  </td>
+                  <td class="col-md-3">
+                    {{#validated-field property='countEstimated' changeset=cs.changeset}}
+                      {{input checked=cs.changeset.countEstimated type='checkbox'}}
+                    {{/validated-field}}
+                  </td>
+                  <td class="col-md-3">
+                    {{#validated-field property='sex' changeset=cs.changeset}}
+                      {{input value=cs.changeset.sex}}
+                    {{/validated-field}}
+                  </td>
+                  <td class="col-md-2">
+                    {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteHasMany' cs 'collectionSpecies')}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form enctype="multipart/form-data">
+            <table class="table">
+              <caption>
+                Attachments
+                {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addHasMany' 'datasheet-attachment' 'datasheets')}}
+              </caption>
+              <thead>
+                <tr>
+                  <th>File</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each changesets.hasMany.datasheets as |d|}}
+                  <tr class="form">
+                    <td>
+                      {{#if d.model.isNew}}
+                        {{#validated-field property='datasheet' changeset=d.changeset}}
+                          <input type="file" onchange={{action 'updateDatasheet' d.changeset}} accept="image/png,image/jpeg,application/pdf">
+                        {{/validated-field}}
+                      {{else}}
+                        <a href="{{ d.model.datasheet }}">{{ d.model.datasheet }}</a>
+                      {{/if}}
+                    </td>
+                    <td>
+                      {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteHasMany' d 'datasheets')}}
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
   {{f.save}} {{f.cancel}}

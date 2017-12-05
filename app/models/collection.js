@@ -11,6 +11,7 @@ export default Model.extend({
   collectionStartTime: attr('string-null-to-empty'),
   collectionEndDate:   attr('string-null-to-empty'),
   collectionEndTime:   attr('string-null-to-empty'),
+  notes:               attr('string'),
 
   project:           belongsTo('project'),
   studyLocation:     belongsTo('study-location'),
