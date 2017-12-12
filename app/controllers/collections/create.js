@@ -29,11 +29,15 @@ export default Controller.extend(ValidationMixin, {
   actions: {
     onSave(changeset) {
       const postSave = () => { this.transitionToRoute('collections.index'); };
-      return this.validationSave(changeset, postSave);
+      return this.transitionToRoute('loading').then(() => {
+        return this.validationSave(changeset, postSave);
+      });
     },
     onCancel(changeset) {
       const postCancel = () => { this.transitionToRoute('collections.index'); };
-      return this.validationCancel(changeset, postCancel);
+      return this.transitionToRoute('loading').then(() => {
+        return this.validationCancel(changeset, postCancel);
+      });
     },
   },
 });

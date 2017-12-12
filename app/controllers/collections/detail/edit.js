@@ -32,14 +32,18 @@ export default Controller.extend(ValidationMixin, {
         // Use the model's ID here because of the ArrayProxy in the route
         this.transitionToRoute('collections.detail', this.get('model.id'));
       };
-      return this.validationSave(changesets, postSave);
+      return this.transitionToRoute('loading').then(() => {
+        return this.validationSave(changesets, postSave);
+      });
     },
     onCancel(changesets) {
       const postCancel = () => {
         // Use the model's ID here because of the ArrayProxy in the route
         return this.transitionToRoute('collections.detail', this.get('model.id'));
       };
-      return this.validationCancel(changesets, postCancel);
+      return this.transitionToRoute('loading').then(() => {
+        return this.validationCancel(changesets, postCancel);
+      });
     },
   },
 });
