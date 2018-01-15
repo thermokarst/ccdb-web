@@ -157,6 +157,54 @@
       </div>
       <div class="row">
         <div class="col-md-12">
+          <table class="table">
+            <caption>
+              Environmental Measurements
+              {{action-button isSuccess=true isXSmall=true label='+' onClick=(action 'addHasMany' 'collection-measurement' 'envMeasurements')}}
+            </caption>
+            <thead>
+              <tr>
+                <th class="col-md-3">Date Measured</th>
+                <th class="col-md-3">Time Measured</th>
+                <th class="col-md-3">Water Temperature (deg C)</th>
+                <th class="col-md-3">Air Temperature (deg C)</th>
+                <th class="col-md-1">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each changesets.hasMany.envMeasurements as |cm|}}
+                <tr class="form">
+                  <td class="col-md-3">
+                    {{#validated-field property='dateMeasured' changeset=cm.changeset}}
+                      {{input value=cm.changeset.dateMeasured type='date' class='form-control'}}
+                    {{/validated-field}}
+                  </td>
+                  <td class="col-md-3">
+                    {{#validated-field property='timeMeasured' changeset=cm.changeset}}
+                      {{input value=cm.changeset.timeMeasured type='time' class='form-control'}}
+                    {{/validated-field}}
+                  </td>
+                  <td class="col-md-3">
+                    {{#validated-field property='waterTempC' changeset=cm.changeset}}
+                      {{input value=cm.changeset.waterTempC class='form-control'}}
+                    {{/validated-field}}
+                  </td>
+                  <td class="col-md-3">
+                    {{#validated-field property='airTempC' changeset=cm.changeset}}
+                      {{input value=cm.changeset.airTempC class='form-control'}}
+                    {{/validated-field}}
+                  </td>
+                  <td class="col-md-2">
+                    {{action-button isDanger=true isXSmall=true label='X' onClick=(action 'deleteHasMany' cm 'envMeasurements')}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <form enctype="multipart/form-data">
             <table class="table">
               <caption>

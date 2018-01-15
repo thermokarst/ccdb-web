@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import CollectionValidations from 'ccdb-web/validations/collection';
 import CollectionSpeciesValidations from 'ccdb-web/validations/collection-species';
+import CollectionMeasurementValidations from 'ccdb-web/validations/collection-measurement';
 import DatasheetValidations from 'ccdb-web/validations/datasheet';
 import ValidationMixin from 'ccdb-web/mixins/validation';
 
@@ -10,8 +11,9 @@ export default Controller.extend(ValidationMixin, {
   CollectionValidations,
   CollectionSpeciesValidations,
   DatasheetValidations,
+  CollectionMeasurementValidations,
 
-  hasMany: ['collectionSpecies', 'datasheets'],
+  hasMany: ['collectionSpecies', 'datasheets', 'envMeasurements'],
 
   options: computed('projectOptions', 'studyLocationOptions',
                     'collectionTypeOptions', 'collectionMethodOptions',

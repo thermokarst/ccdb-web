@@ -26,4 +26,11 @@ export default Component.extend({
     { label: 'Count Estimated?', valuePath: 'countEstimated' },
     { label: 'Sex', valuePath: 'sex' },
   ],
+
+  envMeasColumns: [
+    { label: 'Date Measured', valuePath: 'dateMeasured', },
+    { label: 'Time Measured', valuePath: 'timeMeasured', },
+    { label: 'Water Temp (deg C)', valuePath: 'waterTempC', },
+    { label: 'Air Temp (deg C)', valuePath: 'airTempC', },
+  ],
 });

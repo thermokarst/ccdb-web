@@ -21,6 +21,7 @@ export default Model.extend({
 
   collectionSpecies: hasMany('collection-species'),
   datasheets:        hasMany('datasheet-attachment'),
+  envMeasurements:   hasMany('collection-measurement'),
 
   // computed
   species: computed.mapBy('collectionSpecies', 'species'),
