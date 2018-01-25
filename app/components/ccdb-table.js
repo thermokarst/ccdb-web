@@ -1,7 +1,5 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import Table from 'ember-light-table';
-
-const { Component } = Ember;
 
 export default Component.extend({
   // ARGS

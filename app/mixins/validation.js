@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { Mixin, get, RSVP } = Ember;
+import Mixin from '@ember/object/mixin';
+import { get } from '@ember/object';
+import RSVP from 'rsvp';
 const { keys } = Object;
 const { isArray } = Array;
 

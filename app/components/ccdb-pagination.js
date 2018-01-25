@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { Component, computed: { alias }, computed } = Ember;
+import Component from '@ember/component';
+import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   // ARGS
@@ -8,7 +8,7 @@ export default Component.extend({
 
   // COMPUTED
   meta: alias('model.meta'),
-  links: alias('model.links'),
+  links: alias('meta.links'),
 
   currentPage: alias('meta.pagination.page'),
   totalRecords: alias('meta.pagination.count'),

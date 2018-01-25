@@ -1,11 +1,10 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 import CollectionValidations from 'ccdb-web/validations/collection';
 import CollectionSpeciesValidations from 'ccdb-web/validations/collection-species';
 import CollectionMeasurementValidations from 'ccdb-web/validations/collection-measurement';
 import DatasheetValidations from 'ccdb-web/validations/datasheet';
 import ValidationMixin from 'ccdb-web/mixins/validation';
-
-const { Controller, computed } = Ember;
 
 export default Controller.extend(ValidationMixin, {
   CollectionValidations,

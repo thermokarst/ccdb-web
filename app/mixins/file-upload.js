@@ -1,6 +1,5 @@
-import Ember from 'ember';
-
-const { Mixin, isArray } = Ember;
+import Mixin from '@ember/object/mixin';
+import { isArray } from '@ember/array';
 const { keys } = Object;
 
 // Portions borrowed from https://github.com/funtusov/ember-cli-form-data

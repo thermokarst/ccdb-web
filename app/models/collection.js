@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { mapBy } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 
-const { computed } = Ember;
 const { Model, attr, belongsTo, hasMany } = DS;
 
 export default Model.extend({
@@ -24,11 +24,11 @@ export default Model.extend({
   envMeasurements:   hasMany('collection-measurement'),
 
   // computed
-  species: computed.mapBy('collectionSpecies', 'species'),
+  species: mapBy('collectionSpecies', 'species'),
 
-  speciesNames: computed.mapBy('species', 'commonName'),
+  speciesNames: mapBy('species', 'commonName'),
 
-  counts: computed.mapBy('collectionSpecies', 'count'),
+  counts: mapBy('collectionSpecies', 'count'),
 
   speciesAndCounts: computed('speciesNames', 'counts', function() {
     const speciesNames = this.get('speciesNames');

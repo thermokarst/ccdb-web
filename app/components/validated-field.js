@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { Component, computed, get, isEmpty } = Ember;
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 
 export default Component.extend({
   classNames: ['form-group'],

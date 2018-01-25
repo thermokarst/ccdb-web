@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { get } from '@ember/object';
 import BaseAuthorizer from 'ember-simple-auth/authorizers/base';
-
-const { isEmpty, get } = Ember;
 
 export default BaseAuthorizer.extend({
   authorize(data, block) {

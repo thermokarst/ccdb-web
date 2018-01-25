@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { Promise } from 'rsvp';
+import $ from 'jquery';
+import { get } from '@ember/object';
+import { isEmpty } from '@ember/utils';
+import { run } from '@ember/runloop';
 import BaseAuthenticator from 'ember-simple-auth/authenticators/base';
 import config from '../config/environment';
-
-const { RSVP: { Promise }, $, get, isEmpty, run } = Ember;
 
 export default BaseAuthenticator.extend({
   serverTokenEndpoint: `${config.APP.API_HOST}/api/auth/login/`,

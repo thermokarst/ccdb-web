@@ -1,6 +1,6 @@
+import $ from 'jquery';
 import { moduleFor, test } from 'ember-qunit';
 import sinon from 'sinon';
-import Ember from 'ember';
 
 moduleFor('authenticator:application', 'Unit | application', {
   unit: true,
@@ -35,28 +35,28 @@ test('`invalidate` should invalidate the session', function(assert) {
 
 test('`makeRequest` should make a request', function(assert) {
   assert.expect(2);
-  const stub = sinon.stub(Ember.$, 'ajax');
+  const stub = sinon.stub($, 'ajax');
   stub.resolves(42);
   const authenticator = this.subject();
   authenticator.set('serverTokenEndpoint', 'foo')
   const promise = authenticator.makeRequest({bar: 'baz'}).then((d) => {
     assert.equal(d, 42);
   });
-  assert.ok(Ember.$.ajax.calledWithMatch({url: 'foo', data: {bar: 'baz'}}));
-  Ember.$.ajax.restore();
+  assert.ok($.ajax.calledWithMatch({url: 'foo', data: {bar: 'baz'}}));
+  $.ajax.restore();
   return promise;
 });
 
 test('authenticate should craft a nice payload', function(assert) {
   assert.expect(2);
-  const stub = sinon.stub(Ember.$, 'ajax');
+  const stub = sinon.stub($, 'ajax');
   stub.resolves(42);
   const authenticator = this.subject();
   authenticator.set('serverTokenEndpoint', 'foo')
   const promise = authenticator.authenticate('myusername', 'mypassword').then((d) => {
     assert.equal(d, 42);
   });
-  assert.ok(Ember.$.ajax.calledWithMatch({url: 'foo', data: {username: 'myusername', password: 'mypassword'}}));
-  Ember.$.ajax.restore();
+  assert.ok($.ajax.calledWithMatch({url: 'foo', data: {username: 'myusername', password: 'mypassword'}}));
+  $.ajax.restore();
   return promise;
 });
