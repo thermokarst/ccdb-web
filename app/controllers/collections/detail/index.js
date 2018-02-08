@@ -5,5 +5,10 @@ export default Controller.extend({
     editCollection() {
       this.transitionToRoute('collections.detail.edit', this.get('model'));
     },
+    deleteCollection() {
+      this.get('model')[0].destroyRecord().then(() => {
+        this.transitionToRoute('collections');
+      });
+    },
   },
 });

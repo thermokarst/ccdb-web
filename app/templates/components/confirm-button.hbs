@@ -1,0 +1,6 @@
+{{#if showConfirm}}
+  {{action-button isDanger=true label=cancelLabel onClick=(action 'cancel')}}
+  {{action-button isSuccess=true label=confirmLabel onClick=(action 'confirm')}}
+{{else}}
+  {{action-button isDanger=true label=initialLabel onClick=(action 'initial')}}
+{{/if}}
