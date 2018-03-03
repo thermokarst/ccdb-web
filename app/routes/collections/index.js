@@ -32,7 +32,7 @@ export default Route.extend({
       studyLocationOptions: store.findAll('study-location'),
       collectionMethodOptions: store.findAll('collection-method'),
       adfgPermitOptions: store.findAll('adfg-permit'),
-      speciesOptions: store.findAll('species'),
+      speciesOptions: store.query('species', { page_size: 500 }),
       model: store.query('collection', Object.assign(params, opts)),
     });
   },
