@@ -143,7 +143,15 @@
                   </td>
                   <td class="col-md-3">
                     {{#validated-field property='sex' changeset=cs.changeset}}
-                      {{input value=cs.changeset.sex}}
+                      {{#power-select
+                        options=options.sexes
+                        selected=cs.changeset.sex
+                        onchange=(action (mut cs.changeset.sex))
+                        searchField='name'
+                        as |sex|
+                      }}
+                        {{sex.name}}
+                      {{/power-select}}
                     {{/validated-field}}
                   </td>
                   <td class="col-md-2">

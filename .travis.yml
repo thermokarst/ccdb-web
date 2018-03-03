@@ -3,7 +3,7 @@ branches:
   only:
     - master
 node_js:
-  - "6"
+  - "9"
 sudo: required
 dist: trusty
 addons:

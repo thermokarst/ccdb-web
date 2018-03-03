@@ -22,7 +22,7 @@ export default Component.extend({
     { label: 'Species', valuePath: 'species.commonName' },
     { label: 'Count', valuePath: 'count' },
     { label: 'Count Estimated?', valuePath: 'countEstimated' },
-    { label: 'Sex', valuePath: 'sex' },
+    { label: 'Sex', valuePath: 'sex.name' },
   ],
 
   envMeasColumns: [

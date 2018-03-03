@@ -12,6 +12,7 @@ export default Route.extend({
       collectionMethodOptions: store.findAll('collection-method'),
       speciesOptions: store.findAll('species'),
       adfgPermitOptions: store.findAll('adfg-permit'),
+      sexOptions: store.findAll('sex'),
     });
   },
 

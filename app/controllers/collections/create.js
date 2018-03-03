@@ -16,7 +16,8 @@ export default Controller.extend(ValidationMixin, {
 
   options: computed('projectOptions', 'studyLocationOptions',
                     'collectionTypeOptions', 'collectionMethodOptions',
-                    'speciesOptions', 'adfgPermitOptions', function() {
+                    'speciesOptions', 'adfgPermitOptions', 'sexOptions',
+                    function() {
     return {
       projects: this.get('projectOptions'),
       studyLocations: this.get('studyLocationOptions'),
@@ -24,6 +25,7 @@ export default Controller.extend(ValidationMixin, {
       collectionMethods: this.get('collectionMethodOptions'),
       species: this.get('speciesOptions'),
       adfgPermits: this.get('adfgPermitOptions'),
+      sexes: this.get('sexOptions'),
     };
   }),
 
