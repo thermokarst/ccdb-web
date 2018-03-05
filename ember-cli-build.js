@@ -8,10 +8,12 @@ module.exports = function(defaults) {
     'ember-cli-babel': {
       includePolyfill: (EmberApp.env() === 'test'),
     },
+    'ember-bootstrap-datetimepicker': {
+      'importBootstrapCSS': true,
+      'importBootstrapJS': true,
+      'importBootstrapTheme': true
+    },
   });
-
-  app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
-  app.import('bower_components/bootstrap/dist/css/bootstrap-theme.min.css');
 
   return app.toTree();
 };

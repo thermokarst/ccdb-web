@@ -83,7 +83,13 @@
             {{/validated-field}}
 
             {{#validated-field property='collectionStartTime' label='Collection start time' changeset=changeset}}
-              {{input value=changeset.collectionStartTime type='time' class='form-control'}}
+              {{bs-datetimepicker
+                date=changeset.collectionStartTime
+                updateDate=(action (mut changeset.collectionStartTime))
+                placeholder='HH:mm a'
+                format='HH:mm a'
+                class='form-control'
+              }}
             {{/validated-field}}
 
             {{#validated-field property='collectionEndDate' label='Collection end date' changeset=changeset}}
@@ -91,7 +97,12 @@
             {{/validated-field}}
 
             {{#validated-field property='collectionEndTime' label='Collection end time' changeset=changeset}}
-              {{input value=changeset.collectionEndTime type='time' class='form-control'}}
+              {{bs-datetimepicker
+                date=changeset.collectionEndTime
+                updateDate=(action (mut changeset.collectionEndTime))
+                format='LT'
+                class='form-control'
+              }}
             {{/validated-field}}
           {{/with}}
         {{/f.content}}
