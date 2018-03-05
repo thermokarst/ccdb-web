@@ -21,27 +21,33 @@
             {{/validated-field}}
 
             {{#validated-field property='adfgPermit' label='ADFG Permit' changeset=changeset}}
-              {{#power-select
+              {{#power-select-with-create
                 options=options.adfgPermits
                 selected=changeset.adfgPermit
                 onchange=(action (mut changeset.adfgPermit))
+                oncreate=(action 'addOption' 'adfg-permit' 'adfgPermits' 'adfgPermit' 'name')
                 searchField='name'
-                as |adfgPermit|
+                as |adfgPermit term|
               }}
                 {{adfgPermit.name}}
-              {{/power-select}}
+              {{/power-select-with-create}}
             {{/validated-field}}
 
-            {{#validated-field property='studyLocation' label='Study location' changeset=changeset}}
-                {{#power-select
-                  options=options.studyLocations
-                  selected=changeset.studyLocation
-                  onchange=(action (mut changeset.studyLocation))
-                  searchField='name'
-                  as |studyLocation|
-                }}
-                  {{studyLocation.name}}
-                {{/power-select}}
+            {{#validated-field property='studyLocation' changeset=changeset}}
+              <label class="control-label">
+                Study location
+                <a href="{{newStudyLocationAdmin}}" target="_blank">+</a>
+              </label>
+              {{#power-select
+                search=(action 'searchStudyLocation')
+                options=options.studyLocations
+                selected=changeset.studyLocation
+                onchange=(action (mut changeset.studyLocation))
+                searchField='code'
+                as |studyLocation|
+              }}
+                {{studyLocation.code}}
+              {{/power-select}}
             {{/validated-field}}
 
             {{#validated-field property='collectionType' label='Collection type' changeset=changeset}}

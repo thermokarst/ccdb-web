@@ -8,7 +8,7 @@ export default Route.extend({
     return RSVP.hash({
       model: model,
       projectOptions: store.findAll('project'),
-      studyLocationOptions: store.findAll('study-location'),
+      studyLocationOptions: store.query('study-location', { page_size: 500 }),
       collectionTypeOptions: store.findAll('collection-type'),
       collectionMethodOptions: store.findAll('collection-method'),
       speciesOptions: store.query('species', { page_size: 500 }),

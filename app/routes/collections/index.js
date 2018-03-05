@@ -29,7 +29,7 @@ export default Route.extend({
       projectOptions: store.findAll('project'),
       regionOptions: store.findAll('region'),
       siteOptions: store.findAll('site'),
-      studyLocationOptions: store.findAll('study-location'),
+      studyLocationOptions: store.query('study-location', { page_size: 500 }),
       collectionMethodOptions: store.findAll('collection-method'),
       adfgPermitOptions: store.findAll('adfg-permit'),
       speciesOptions: store.query('species', { page_size: 500 }),
