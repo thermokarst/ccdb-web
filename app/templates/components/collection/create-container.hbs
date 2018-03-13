@@ -79,19 +79,35 @@
             {{/validated-field}}
 
             {{#validated-field property='collectionStartDate' label='Collection start date' changeset=changeset}}
-              {{input value=changeset.collectionStartDate type='date' class='form-control'}}
+              {{
+                pikaday-input
+                onSelection=(action (mut changeset.collectionStartDate))
+                value=changeset.collectionStartDate
+                useUTC=true
+                placeholder='MM/DD/YYYY'
+                format='MM/DD/YYYY'
+                class='form-control'
+              }}
             {{/validated-field}}
 
             {{#validated-field property='collectionStartTime' label='Collection start time' changeset=changeset}}
-              {{input value=changeset.collectionStartTime type='time' class='form-control'}}
+              {{input value=changeset.collectionStartTime type='time' class='form-control' placeholder='HH:MM:SS (24 hour)'}}
             {{/validated-field}}
 
             {{#validated-field property='collectionEndDate' label='Collection end date' changeset=changeset}}
-              {{input value=changeset.collectionEndDate type='date' class='form-control'}}
+              {{
+                pikaday-input
+                onSelection=(action (mut changeset.collectionEndDate))
+                value=changeset.collectionEndDate
+                useUTC=true
+                placeholder='MM/DD/YYYY'
+                format='MM/DD/YYYY'
+                class='form-control'
+              }}
             {{/validated-field}}
 
             {{#validated-field property='collectionEndTime' label='Collection end time' changeset=changeset}}
-              {{input value=changeset.collectionEndTime type='time' class='form-control'}}
+              {{input value=changeset.collectionEndTime type='time' class='form-control' placeholder='HH:MM:SS (24 hour)'}}
             {{/validated-field}}
           {{/with}}
         {{/f.content}}

@@ -7,9 +7,9 @@ const { Model, attr, belongsTo, hasMany } = DS;
 export default Model.extend({
   displayName:         attr('string'),
   numberOfTraps:       attr('number'),
-  collectionStartDate: attr('string-null-to-empty'),
+  collectionStartDate: attr('ccdb-date'),
   collectionStartTime: attr('string-null-to-empty'),
-  collectionEndDate:   attr('string-null-to-empty'),
+  collectionEndDate:   attr('ccdb-date'),
   collectionEndTime:   attr('string-null-to-empty'),
   notes:               attr('string'),
 
