@@ -7,9 +7,10 @@ export default DS.Transform.extend({
 
   serialize(date) {
     if (date !== '') {
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-      const year = date.getFullYear();
+      date = new Date(date);
+      const day = date.getUTCDate();
+      const month = date.getUTCMonth() + 1;
+      const year = date.getUTCFullYear();
       return `${year}-${month}-${day}`;
     } else {
       return null;
