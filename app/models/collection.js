@@ -11,7 +11,7 @@ export default Model.extend({
   collectionStartTime: attr('string-null-to-empty'),
   collectionEndDate:   attr('ccdb-date'),
   collectionEndTime:   attr('string-null-to-empty'),
-  notes:               attr('string'),
+  notes:               attr('string', { defaultValue: '' }),
 
   project:           belongsTo('project'),
   studyLocation:     belongsTo('study-location'),

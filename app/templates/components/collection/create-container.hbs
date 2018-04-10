@@ -206,7 +206,15 @@
                 <tr class="form">
                   <td class="col-md-3">
                     {{#validated-field property='dateMeasured' changeset=cm.changeset}}
-                      {{input value=cm.changeset.dateMeasured type='date' class='form-control'}}
+                      {{
+                        pikaday-input
+                        onSelection=(action (mut cm.changeset.dateMeasured))
+                        value=cm.changeset.dateMeasured
+                        useUTC=true
+                        placeholder='MM/DD/YYYY'
+                        format='MM/DD/YYYY'
+                        class='form-control'
+                      }}
                     {{/validated-field}}
                   </td>
                   <td class="col-md-3">
