@@ -13,5 +13,8 @@ module.exports = function(defaults) {
   app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
   app.import('bower_components/bootstrap/dist/css/bootstrap-theme.min.css');
 
+  app.import('node_modules/raven-js/dist/raven.js');
+  app.import('node_modules/raven-js/dist/plugins/ember.js');
+
   return app.toTree();
 };

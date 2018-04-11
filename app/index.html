@@ -18,6 +18,12 @@
     {{content-for "body"}}
 
     <script integrity="" src="{{rootURL}}assets/vendor.js"></script>
+    <script>
+      Raven
+        .config('https://fd3c695fa9394de48a7c69b7a322960b@sentry.io/1186914')
+        .addPlugin(Raven.Plugins.Ember)
+        .install();
+    </script>
     <script integrity="" src="{{rootURL}}assets/ccdb-web.js"></script>
 
     {{content-for "body-footer"}}
