@@ -19,7 +19,7 @@ export default Component.extend({
     let changesets = {};
     changesets['new'] = [];
     changesets['delete'] = [];
-    changesets['hasMany'] = [];
+    changesets['hasMany'] = {};
     changesets['model'] = new Changeset(model,
                                         lookupValidator(validations['collection']),
                                         validations['collection']);
