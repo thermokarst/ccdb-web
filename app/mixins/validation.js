@@ -2,7 +2,6 @@ import Mixin from '@ember/object/mixin';
 import { get } from '@ember/object';
 import RSVP from 'rsvp';
 const { keys } = Object;
-const { isArray } = Array;
 
 export default Mixin.create({
   validationSave(changesets, postSave) {
@@ -55,9 +54,13 @@ export default Mixin.create({
         for (const model of changesets[key]) {
           model.destroyRecord();
         }
-      } else if (isArray(changesets[key])) {  // hasMany
-        for (const { changeset } of changesets[key]) {
-          changeset.rollback();
+      } else if (key === 'hasMany') {
+        const hasMany = changesets[key];
+        for (const hasManyKey of keys(changesets[key])) {
+          const hasManyChangesets = hasMany[hasManyKey];
+          for (const changeset of hasManyChangesets) {
+            changeset.rollback();
+          }
         }
       } else {  // single
         const changeset = changesets[key];
