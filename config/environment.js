@@ -51,7 +51,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.API_HOST = 'https://obscure-caverns-99102.herokuapp.com';
+    ENV.APP.API_HOST = 'https://ccdb-api.thermokar.st';
     ENV.APP.API_NAMESPACE = 'api/v1';
   }
 
